@@ -1,9 +1,6 @@
-package andersen.ikea;
+package ikea;
 
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +17,8 @@ public class IkeaPageTest {
     }
 
     @AfterClass
-    static public void tearDown() {
+    public static void setDown() {
+        //if (driver != null)
         driver.close();
     }
 
@@ -38,7 +36,6 @@ public class IkeaPageTest {
         driver.navigate().to("https://www.ikea.com/pl/pl/cat/lozka-i-materace-bm001/");
         driver.findElement(By.partialLinkText("NEIDEN")).click();
         Assert.assertEquals(driver.getTitle(), "NEIDEN Rama łóżka, sosna, 90x200 cm - IKEA");
-        // driver.close();
     }
 
     @Test
@@ -46,9 +43,11 @@ public class IkeaPageTest {
         driver.navigate().to("https://www.ikea.com/pl/pl/cat/lozka-i-materace-bm001/");
         driver.findElement(By.partialLinkText("NEIDEN")).click();
         driver.findElement(By.xpath("//div[@class='pip-buy-module__buttons--left']//span[text()='Dodaj do koszyka']")).click();
-        // driver.findElement(By.class
         sleep(2000);
-        WebElement cartButton = driver.findElement(By.cssSelector("a[href*=shoppingcart]"));
+        WebElement cartButton = driver.findElement(By.partialLinkText("Przejdź do koszyka"));
+        cartButton.click();
+        //sleep(2000);
+        Assert.assertEquals("https://www.ikea.com/pl/pl/shoppingcart/", driver.getCurrentUrl());
     }
 }
 
