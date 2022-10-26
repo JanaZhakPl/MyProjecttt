@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Thread.sleep;
+
 
 public class RegistrationFormTest {
     private WebDriver driver;
@@ -32,10 +34,10 @@ public class RegistrationFormTest {
     public void ifEmptyForm() throws InterruptedException {
         registrationPage.submitBtn.click();
         Assert.assertTrue(registrationPage.requiredField.isDisplayed());
-        Thread.sleep(3000);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("console.log('Submit empty form')");
-        js.executeScript("window.scroll(0,600)");
+        sleep(1000);
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("console.log('Submit empty form')");
+//        js.executeScript("window.scroll(0,600)");
     }
 
     @Test
@@ -43,11 +45,10 @@ public class RegistrationFormTest {
         String emailPattern = "^(.+)@(\\\\S+)$";
         Pattern p = Pattern.compile(emailPattern);
         registrationPage.email.sendKeys("user@user.com");
-        Thread.sleep(1000);
+        sleep(1000);
         String par = registrationPage.email.getText();
         Matcher m = p.matcher(par);
         Assert.assertTrue(m.matches());
-
     }
 
     @Test
@@ -60,7 +61,7 @@ public class RegistrationFormTest {
         registrationPage.email.sendKeys("user@user.com");
         registrationPage.password.sendKeys("1111");
         registrationPage.confirmPassword.sendKeys("1111");
-        Thread.sleep(1000);
+        sleep(1000);
         registrationPage.submitBtn.click();
     }
 
