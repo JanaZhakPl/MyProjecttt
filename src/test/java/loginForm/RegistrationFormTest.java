@@ -6,12 +6,16 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class RegistrationFormTest {
     private WebDriver driver;
     private RegistrationPage registrationPage;
+
     @Before
-    public  void setUp() {
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.way2automation.com/way2auto_jquery/registration.php#load_box");
@@ -23,6 +27,7 @@ public class RegistrationFormTest {
     public void tearDown() {
         driver.quit();
     }
+
     @Test
     public void ifEmptyForm() throws InterruptedException {
         registrationPage.submitBtn.click();
@@ -33,17 +38,20 @@ public class RegistrationFormTest {
         js.executeScript("window.scroll(0,600)");
     }
 
-//    @Test
-//    public void isValidEmail() {
-//        String emailPattern = "^(.+)@(\\\\S+)$";
-//        Pattern p = Pattern.compile(emailPattern);
-//        registrationPage.email.sendKeys("user@user.com");
-//        Matcher m = p.matcher((CharSequence) registrationPage.email);
-//        Assert.assertTrue(m.matches());
-//    }
+    @Test
+    public void isValidEmail() throws InterruptedException {
+        String emailPattern = "^(.+)@(\\\\S+)$";
+        Pattern p = Pattern.compile(emailPattern);
+        registrationPage.email.sendKeys("user@user.com");
+        Thread.sleep(1000);
+        String par = registrationPage.email.getText();
+        Matcher m = p.matcher(par);
+        Assert.assertTrue(m.matches());
+
+    }
 
     @Test
-    public void isSuccessfullyLogin() {
+    public void isSuccessfullyLogin() throws InterruptedException {
         registrationPage.firstName.sendKeys("UserName");
         registrationPage.lastName.sendKeys("UserLastName");
         registrationPage.hobby.click();
@@ -52,16 +60,17 @@ public class RegistrationFormTest {
         registrationPage.email.sendKeys("user@user.com");
         registrationPage.password.sendKeys("1111");
         registrationPage.confirmPassword.sendKeys("1111");
+        Thread.sleep(1000);
         registrationPage.submitBtn.click();
     }
 
-//    @Test
-//    public void wrongPasswordConfirmation() {
-//        password.sendKeys("1111");
-//        passwordConfirmation.sendKeys("1111");
-//        Assert.assertEquals(password, passwordConfirmation);
-//    }
+    @Test
+    public void wrongPasswordConfirmation() {
+        registrationPage.password.sendKeys("1111");
+        registrationPage.confirmPassword.sendKeys("1111");
+        String getConfirmationError = registrationPage.confirmationError.getText();
+        Assert.assertEquals("Invalid password confirmation", getConfirmationError);
+    }
 
 }
-
 

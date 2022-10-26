@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 //https://www.way2automation.com/way2auto_jquery/registration.php#load_box
 
 public class RegistrationPage {
-        @FindBy(css = "fieldset[class='fieldset'] input[name='name']")
+    @FindBy(css = "fieldset[class='fieldset'] input[name='name']")
     public WebElement firstName;
 
     @FindBy(xpath = "//form[@id='register_form']/fieldset/p[2]/input")
@@ -40,6 +40,9 @@ public class RegistrationPage {
 
     @FindBy(className = "error_p")
     public WebElement requiredField;
+
+    @FindBy(xpath = "//*[@id=\"register_form\"]/fieldset[12]/label[2]")
+    public WebElement confirmationError;
 
     public RegistrationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
