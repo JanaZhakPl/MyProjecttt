@@ -44,7 +44,7 @@ public class RegistrationPage {
     @FindBy(className = "error_p")
     public WebElement requiredField;
 
-    @FindBy(xpath = "//*[@id=\"register_form\"]/fieldset[12]/label[2]")
+    @FindBy(xpath = "input[type='password'][name='c_password']")
     public WebElement confirmationError;
 
     public RegistrationPage(WebDriver driver) {
