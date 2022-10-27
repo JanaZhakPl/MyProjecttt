@@ -66,7 +66,7 @@ public class RegistrationFormTest {
     public void wrongPasswordConfirmation() {
         registrationPage.password.sendKeys("1111");
         registrationPage.confirmPassword.sendKeys("222");
-        String getConfirmationError = registrationPage.confirmationError.getText();
+        String getConfirmationError = registrationPage.requiredField.getText();
         Assert.assertEquals("Invalid password confirmation", getConfirmationError);
     }
 }
