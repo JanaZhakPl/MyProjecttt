@@ -2,7 +2,6 @@ package loginForm;
 
 
 import org.junit.*;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -43,14 +42,14 @@ public class RegistrationFormTest {
     }
 
     @Test
-//    public void isValidEmail() throws InterruptedException {
-//        String emailPattern = "^(.+)@(\\\\S+)$";
-//        Pattern p = Pattern.compile(emailPattern);
-//        registrationPage.email.sendKeys("user@user.com");
-//        sleep(1000);
-//        String par = registrationPage.email.getText();
-//        Matcher m = p.matcher(par);
-//        Assert.assertTrue(m.matches());
+    public void isValidEmail() throws InterruptedException {
+        registrationPage.email.sendKeys("useruser.com");
+        registrationPage.password.sendKeys("");
+        sleep(1000);
+        Assert.assertTrue(registrationPage.requiredField.isDisplayed());
+        if(true) {
+            System.out.println("inValidEmail");
+        }
     }
 
     @Test
@@ -67,12 +66,12 @@ public class RegistrationFormTest {
         registrationPage.submitBtn.click();
     }
 
-//    @Test
-//    public void wrongPasswordConfirmation() {
-//        registrationPage.password.sendKeys("1111");
-//        registrationPage.confirmPassword.sendKeys("1111");
-//        String getConfirmationError = registrationPage.confirmationError.getText();
-//        Assert.assertEquals("Invalid password confirmation", getConfirmationError);
-//    }
+    @Test
+    public void wrongPasswordConfirmation() {
+        registrationPage.password.sendKeys("1111");
+        registrationPage.confirmPassword.sendKeys("222");
+        String getConfirmationError = registrationPage.confirmationError.getText();
+        Assert.assertEquals("Invalid password confirmation", getConfirmationError);
+    }
 }
 
