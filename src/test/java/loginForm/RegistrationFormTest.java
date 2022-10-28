@@ -4,7 +4,9 @@ package loginForm;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.concurrent.TimeUnit;
+
 import static java.lang.Thread.sleep;
 
 
@@ -38,13 +40,14 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void isValidEmail() throws InterruptedException {
+    public void isInvalidValidEmail() throws InterruptedException {
         registrationPage.email.sendKeys("useruser.com");
         registrationPage.password.sendKeys("");
         sleep(1000);
         Assert.assertTrue(registrationPage.requiredField.isDisplayed());
-        if(true) {
+        if (true) {
             System.out.println("inValidEmail");
+            System.out.println(registrationPage.requiredField.getText());
         }
     }
 
