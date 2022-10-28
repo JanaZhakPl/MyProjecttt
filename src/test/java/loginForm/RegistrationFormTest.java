@@ -2,9 +2,12 @@ package loginForm;
 
 
 import org.junit.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
@@ -34,9 +37,6 @@ public class RegistrationFormTest {
         registrationPage.submitBtn.click();
         Assert.assertTrue(registrationPage.requiredField.isDisplayed());
         sleep(1000);
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("console.log('Submit empty form')");
-//        js.executeScript("window.scroll(0,600)");
     }
 
     @Test
@@ -44,9 +44,11 @@ public class RegistrationFormTest {
         registrationPage.email.sendKeys("useruser.com");
         registrationPage.password.sendKeys("");
         sleep(1000);
-        Assert.assertTrue(registrationPage.requiredField.isDisplayed());
-        if (true) {
-            System.out.println("inValidEmail");
+        List<WebElement> allMessages = driver.findElements(By.xpath("//*[contains(text(), 'Please enter a valid email address.')]"));
+        if (allMessages.isEmpty()) {
+            System.out.println("Test not passed");
+        } else {
+            System.out.println("Test passed");
             System.out.println(registrationPage.requiredField.getText());
         }
     }
