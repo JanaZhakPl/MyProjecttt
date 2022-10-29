@@ -5,7 +5,7 @@ public class Main {
         Triangle triangle = new Triangle(1, 2, -2);
 
         try {
-            System.out.println("Triangle's square is: " + triangle.triangleSquare());
+            System.out.println("Triangle's square is: " + triangle.getTriangleSquare());
         } catch (Exception e) {
             e.printStackTrace();
         }

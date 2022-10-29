@@ -23,7 +23,7 @@ public class Triangle {
         return c;
     }
 
-    public double triangleSquare() throws Exception {
+    public double getTriangleSquare() throws Exception {
         if (!isTriangleExist()) {
             throw new TriangleNotExistsException();
         }
