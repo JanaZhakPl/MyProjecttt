@@ -1,28 +1,40 @@
 package TriangleTest;
 
-import org.junit.Assert;
+import TriangleTest.Exeptions.NegativeSideException;
+import TriangleTest.Exeptions.TriangleNotExistsException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 
+import static TriangleTest.Triangle.getTriangleSquare;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+
 class TriangleTest {
-    private static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
+    final static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
 
     @Test
-    void triangleSquare() throws Exception {
-        //given
-        Triangle triangle = new Triangle(6, 8, 6);
-        //when
-        double actual = triangle.getTriangleSquare();
-        double expected = 17.8;
-        //then
-        Assertions.assertEquals(expected, actual, 0.1);
+    @Tag("PositiveTestCase")
+    @DisplayName("Getting triangle area")
+    void triangleSquare() throws TriangleNotExistsException, NegativeSideException {
+        //logger.debug("Verifying positive test scenario...");
+        double result = getTriangleSquare(3, 4, 5);
+        Assertions.assertEquals(6, result, 0.1);
     }
 
     @Test
-    void isTriangleExist() {
-        Triangle tr = new Triangle(6, 8, 6);
-        Assert.assertTrue(tr.isTriangleExist());
+    @Tag("PositiveTestCase")
+    @DisplayName("Getting triangle area")
+    void negativeSidesTest() {
+        assertThatExceptionOfType(TriangleNotExistsException.class)
+                .isThrownBy(() -> getTriangleSquare(103, 4, 5));
+    }
+
+    @Test
+    void degenerateTriangleTest() {
+        assertThatExceptionOfType(NegativeSideException.class)
+                .isThrownBy(() -> getTriangleSquare(-3, 4, 8));
     }
 }

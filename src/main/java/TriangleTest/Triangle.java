@@ -1,42 +1,23 @@
 package TriangleTest;
 
+import TriangleTest.Exeptions.NegativeSideException;
+import TriangleTest.Exeptions.TriangleNotExistsException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Triangle {
-    int a;
-    int b;
-    int c;
-
-    public Triangle(int a, int b, int c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    private static final Logger logger = LoggerFactory.getLogger(Triangle.class);
+    public static double getTriangleSquare(int a, int b, int c) throws NegativeSideException, TriangleNotExistsException {
+        isTriangleValid(a, b, c);
+        double halfPerimeter = (a + b + c) / 2;
+        double triangleSquare = Math.sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
+        return triangleSquare;
     }
-
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public double getTriangleSquare() throws Exception {
-        if (!isTriangleExist()) {
-            throw new TriangleNotExistsException();
-        }
-        double p = (a + b + c) / 2.0;
-        if (p / 2 == a | p / 2 == b | p / 2 == c) return 0;
-        return Math.sqrt(p * (p - a) * (p - b) * (p - c));
-    }
-
-    public boolean isTriangleExist() {
-        if ((a + b) < c) {
-            return false;
-        } else if ((b + c) < a) {
-            return false;
-        } else return (c + a) >= b;
+    public static boolean isTriangleValid(int a, int b, int c) throws NegativeSideException, TriangleNotExistsException {
+        if (a <= 0 || b <= 0 || c <= 0) throw new NegativeSideException();
+        logger.error("Triangle has negative side length(s): {}, {}, {}.", a, b, c);
+        if (a > b + c || b > a + c || c > a + b) throw new TriangleNotExistsException();
+        logger.error("It is not a triangle in case of side length(s): {}, {}, {}.", a, b, c);
+        return false;
     }
 }
