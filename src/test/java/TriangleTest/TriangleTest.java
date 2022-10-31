@@ -1,5 +1,6 @@
 package TriangleTest;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
@@ -10,14 +11,18 @@ class TriangleTest {
 
     @Test
     void triangleSquare() throws Exception {
+        //given
         Triangle triangle = new Triangle(6, 8, 6);
+        //when
         double actual = triangle.getTriangleSquare();
-        double expected = 17.88854381999832;
-        Assertions.assertEquals(expected, actual);
-
+        double expected = 17.8;
+        //then
+        Assertions.assertEquals(expected, actual, 0.1);
     }
 
     @Test
     void isTriangleExist() {
+        Triangle tr = new Triangle(6, 8, 6);
+        Assert.assertTrue(tr.isTriangleExist());
     }
 }
