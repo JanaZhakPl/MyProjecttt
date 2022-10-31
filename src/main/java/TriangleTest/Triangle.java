@@ -10,14 +10,12 @@ public class Triangle {
     public static double getTriangleSquare(int a, int b, int c) throws NegativeSideException, TriangleNotExistsException {
         isTriangleValid(a, b, c);
         double halfPerimeter = (a + b + c) / 2;
-        double triangleSquare = Math.sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
-        return triangleSquare;
+        return Math.sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
     }
-    public static boolean isTriangleValid(int a, int b, int c) throws NegativeSideException, TriangleNotExistsException {
+    public static void isTriangleValid(int a, int b, int c) throws NegativeSideException, TriangleNotExistsException {
         if (a <= 0 || b <= 0 || c <= 0) throw new NegativeSideException();
         logger.error("Triangle has negative side length(s): {}, {}, {}.", a, b, c);
         if (a > b + c || b > a + c || c > a + b) throw new TriangleNotExistsException();
         logger.error("It is not a triangle in case of side length(s): {}, {}, {}.", a, b, c);
-        return false;
     }
 }

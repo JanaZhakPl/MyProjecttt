@@ -25,15 +25,17 @@ class TriangleTest {
     }
 
     @Test
-    @Tag("PositiveTestCase")
-    @DisplayName("Getting triangle area")
+    @Tag("NegativeTestCase")
+    @DisplayName("Getting triangle area with wrong sides dimensions")
     void negativeSidesTest() {
         assertThatExceptionOfType(TriangleNotExistsException.class)
                 .isThrownBy(() -> getTriangleSquare(103, 4, 5));
     }
 
     @Test
-    void degenerateTriangleTest() {
+    @Tag("NegativeTestCase")
+    @DisplayName("Getting triangle area with negative sides dimensions")
+    void negativeSideTriangleTest() {
         assertThatExceptionOfType(NegativeSideException.class)
                 .isThrownBy(() -> getTriangleSquare(-3, 4, 8));
     }
