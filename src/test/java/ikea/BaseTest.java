@@ -24,11 +24,11 @@ public class BaseTest {
         driver.findElement(By.id("onetrust-accept-btn-handler")).click();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null)
-            driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        if (driver != null)
+//            driver.quit();
+//    }
 
     private WebElement find(By locator) {
         return driver.findElement(locator);
