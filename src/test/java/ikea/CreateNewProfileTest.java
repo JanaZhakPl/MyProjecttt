@@ -23,11 +23,11 @@ public class CreateNewProfileTest extends BaseTest {
     By password = By.id("family-signup-form-password");
     By consent = By.xpath("//*[@id=\"family-signup-form-double-consent\"]");
     By confirmation = By.xpath("//*[@id=\"singup-form-submit-button\"]/span/span");
-    By confirmationEmailMessage = By.className("jumbo-btn__label");
-    By errorMessage = By.className("form-field__message");
+    public By confirmationEmailMessage = By.className("jumbo-btn__label");
+    public By errorMessage = By.className("form-field__message");
 
     @Test
-    public void teat1_CreateNewProfile() throws InterruptedException {
+    public void CreateNewProfile() throws InterruptedException {
         click(myAccountMenu);
         click(newAccBtn);
         type(firstName, "User1");
@@ -61,8 +61,8 @@ public class CreateNewProfileTest extends BaseTest {
         ExpectedConditions.presenceOfElementLocated(errorMessage);
     }
 
-    private String generateRandomEmail(){
-         return RandomStringUtils.random(4,true,true) + "@gmail.com";
+    private String generateRandomEmail() {
+        return RandomStringUtils.random(4, true, true) + "@gmail.com";
     }
 }
 

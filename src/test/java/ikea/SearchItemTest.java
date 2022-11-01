@@ -3,12 +3,13 @@ package ikea;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class SearchItemTest extends BaseTest {
     By searchBox = By.xpath("//input[@placeholder='Czego szukasz?']");
     By searchBtn = By.id("search-box__searchbutton");
-    // By  summaryMessage = By.className("search-summary__message");
 
     @Test
     public void searchBoxTest() {
@@ -29,4 +30,4 @@ public class SearchItemTest extends BaseTest {
         String result = zeroResultMessage.getText();
         System.out.println(result);
     }
-}
+  }
