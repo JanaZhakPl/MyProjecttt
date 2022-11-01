@@ -33,11 +33,9 @@ public class BaseTest {
     private WebElement find(By locator) {
         return driver.findElement(locator);
     }
-
     protected void click(By locator) {
         find(locator).click();
     }
-
     protected void type(By locator, String text) {
         find(locator).sendKeys(text);
     }

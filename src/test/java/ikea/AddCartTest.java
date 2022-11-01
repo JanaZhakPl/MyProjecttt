@@ -1,26 +1,19 @@
 package ikea;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static java.lang.Thread.sleep;
 
-public class IkeaPageTest extends BaseTest {
-
-    @Test
-    public void search() throws InterruptedException {
-
-        driver.findElement(By.name("q")).sendKeys("regał");
-        driver.findElement(By.id("search-box__searchbutton")).click();
-        Thread.sleep(2000);
-        Assert.assertTrue(driver.findElement(By.className("search-summary__message")).isDisplayed());
-    }
+public class AddCartTest extends BaseTest {
+    By chosenItem = By.partialLinkText("NEIDEN");
 
     @Test
     public void choose() {
         driver.navigate().to("https://www.ikea.com/pl/pl/cat/lozka-i-materace-bm001/");
-        driver.findElement(By.partialLinkText("NEIDEN")).click();
+        click(chosenItem);
         Assert.assertEquals(driver.getTitle(), "NEIDEN Rama łóżka, sosna, 90x200 cm - IKEA");
     }
 

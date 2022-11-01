@@ -1,13 +1,13 @@
 package ikea;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-public class CreateNewProfile extends BaseTest {
+public class CreateNewProfileTest extends BaseTest {
     By myAccountMenu = By.xpath("//*[@id=\"loyalty-modal-button\"]/span");
     By newAccBtn = By.xpath("//div[@class='header__link-content-text']//h3[contains(text(), 'Utwórz konto IKEA Family')]");
     By firstName = By.id("family-signup-form-firstName");
@@ -38,7 +38,7 @@ public class CreateNewProfile extends BaseTest {
         type(zipCode, "12345");
         type(cityName, "SomeCity");
         type(preferredStore, "g");
-        type(email, "vbpewivjxffxprsoas@tmmcv.net");
+        type(email, generateRandomEmail());
         type(password, "qQ123456");
         Thread.sleep(1000);
         WebElement element = driver.findElement(By.xpath("//*[@id=\"family-signup-form-double-consent\"]"));
@@ -59,6 +59,10 @@ public class CreateNewProfile extends BaseTest {
         Thread.sleep(500);
         click(confirmation);
         ExpectedConditions.presenceOfElementLocated(errorMessage);
+    }
+
+    private String generateRandomEmail(){
+         return RandomStringUtils.random(4,true,true) + "@gmail.com";
     }
 }
 
