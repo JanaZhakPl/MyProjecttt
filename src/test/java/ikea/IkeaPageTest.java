@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import static java.lang.Thread.sleep;
 
-public class IkeaPageTest extends Base {
+public class IkeaPageTest extends BaseTest {
 
     @Test
     public void search() throws InterruptedException {
