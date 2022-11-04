@@ -1,44 +1,39 @@
 package ikea;
 
+import ikea.Pages.CartPage;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AddCartTest<productName> extends BaseTest {
-    By chosenItem = By.partialLinkText("NEIDEN");
-    By addToCartBtn = By.xpath("(//div[@class='pip-buy-module__buttons--left']//span[text()='Dodaj do koszyka'])");
-    By checkOutBtn = By.partialLinkText("Przejdź do koszyka");
-    By shoppingCartBtn = By.className("js-shopping-cart-icon");
-    By clearCartBtn = By.className("product-controls__remove");
-    By navigateCartBtn = By.className("cart-ingka-btn__icon");
+public class AddCartTest extends BaseTest {
+   CartPage cartPage = new CartPage(driver);
 
     @Test
+    @Description("Search product by name and add to cart")
     public void chooseAndAdd() {
         driver.navigate().to("https://www.ikea.com/pl/pl/cat/lozka-i-materace-bm001/");
-        click(chosenItem);
-       // Assert.assertEquals(driver.getTitle(), "NEIDEN Rama łóżka, sosna, 90x200 cm - IKEA");
-        click(addToCartBtn);
-        click(checkOutBtn);
-        Assert.assertEquals("https://www.ikea.com/pl/pl/shoppingcart/", driver.getCurrentUrl());
+        click(cartPage.chosenItem);
+        // Assert.assertEquals(driver.getTitle(), "NEIDEN Rama łóżka, sosna, 90x200 cm - IKEA");
+        click(cartPage.addToCartBtn);
+        click(cartPage.checkOutBtn);
     }
-
-    public void addProduct(String productName){
-
+   @Test
+   @Attachment
+    public void emptyShoppingCart() {
+        //cartPage.addProduct();
+        click(cartPage.shoppingCartBtn);
+        click(cartPage.navigateCartBtn);
+       WebElement emptyCartMessage = driver.findElement(By.className("noProducts_header__9wz2x"));
+       Assert.assertTrue(emptyCartMessage.isDisplayed());
+       String result = emptyCartMessage.getText();
+       System.out.println(result);
     }
-
-            @Test
-        public void clearShoppingCart () {
-            click(shoppingCartBtn);
-            click(navigateCartBtn);
-            WebElement deleteItemsInCart = new WebDriverWait(driver, 10)
-                    .until(ExpectedConditions.elementToBeClickable(clearCartBtn));
-            click(clearCartBtn);
-        }
-    }
+}
 
 
 

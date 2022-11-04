@@ -1,11 +1,15 @@
 package loginForm;
 
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -53,6 +57,8 @@ public class RegistrationFormTest {
     }
 
     @Test
+    @Description ("Checking login form with all needed parameters")
+    @Step("Fill the login form")
     public void isSuccessfullyLogin() throws InterruptedException {
         registrationPage.firstName.sendKeys("UserName");
         registrationPage.lastName.sendKeys("UserLastName");
@@ -66,12 +72,5 @@ public class RegistrationFormTest {
         registrationPage.submitBtn.click();
     }
 
-    @Test
-    public void wrongPasswordConfirmation() {
-        registrationPage.password.sendKeys("1111");
-        registrationPage.confirmPassword.sendKeys("222");
-        String getConfirmationError = registrationPage.requiredField.getText();
-        Assert.assertEquals("Invalid password confirmation", getConfirmationError);
-    }
 }
 

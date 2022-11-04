@@ -8,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 //https://www.way2automation.com/way2auto_jquery/registration.php#load_box
 
 public class RegistrationPage {
-
-
-
     @FindBy(css = "fieldset[class='fieldset'] input[name='name']")
     public WebElement firstName;
 
