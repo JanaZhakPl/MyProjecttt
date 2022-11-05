@@ -26,8 +26,7 @@ public class SearchItemTest extends BaseTest {
         click(searchBtn);
         WebElement summaryMessage = driver.findElement(By.className("search-summary__message"));
         Assert.assertTrue(summaryMessage.isDisplayed());
-        String result = summaryMessage.getText();
-        return result;
+        return summaryMessage.getText();
     }
 
     @Test
@@ -37,7 +36,6 @@ public class SearchItemTest extends BaseTest {
         click(searchBtn);
         WebElement zeroResultMessage = driver.findElement(By.className("zero-results-heading"));
         Assert.assertTrue(zeroResultMessage.isDisplayed());
-        String result = zeroResultMessage.getText();
-        return result;
+        return zeroResultMessage.getText();
     }
 }

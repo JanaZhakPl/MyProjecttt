@@ -52,7 +52,7 @@ public class RegistrationFormTest {
     @Test
     @Description("Checking login form with all needed parameters")
     @Step("Fill the login form")
-    public void isSuccessfullyLogin() throws InterruptedException {
+    public void isSuccessfullyLogin(){
         registrationPage.firstName.sendKeys("UserName");
         registrationPage.lastName.sendKeys("UserLastName");
         registrationPage.hobby.click();

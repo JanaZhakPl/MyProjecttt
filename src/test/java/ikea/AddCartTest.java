@@ -37,7 +37,7 @@ public class AddCartTest extends BaseTest {
 
     @Test
     @Description("Search product by name and add to cart")
-    public void addAndDelete() throws InterruptedException {
+    public void addAndDelete(){
         chooseAndAdd();
         click(cartPage.navigateCartBtn);
         click(cartPage.clearCartBtn);

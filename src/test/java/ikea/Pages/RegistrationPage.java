@@ -16,7 +16,6 @@ public class RegistrationPage extends BaseTest {
     By lastName = By.id("family-signup-form-lastName");
     By birthDate = By.id("family-signup-form-birthDate");
     By gender = By.id("family-signup-form-genderCode");
-    //By country = By.id("family-signup-form-addressCountryCode");
     public By address = By.id("family-signup-form-address1");
     public By zipCode = By.id("family-signup-form-zipCode");
     public By cityName = By.id("family-signup-form-cityName");
@@ -47,8 +46,8 @@ public class RegistrationPage extends BaseTest {
     }
 
     @Step("Choose {user.gender}")
-    public RegistrationPage chooseGender(String gender) {
-        type(lastName, gender);
+    public RegistrationPage chooseGender(String genderType) {
+        type(gender, genderType);
         return this;
     }
 
