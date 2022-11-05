@@ -1,11 +1,10 @@
 package ikea.Pages;
 
-import ikea.BaseTest;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegistrationPage extends BaseTest {
+public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver driver) {
         this.driver = driver;
     }

@@ -1,10 +1,9 @@
 package ikea.Pages;
 
-import ikea.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartPage extends BaseTest {
+public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         this.driver = driver;
     }
