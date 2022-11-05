@@ -6,10 +6,12 @@ import io.qameta.allure.Description;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class AddCartTest extends BaseTest {
-   CartPage cartPage = new CartPage(driver);
+    CartPage cartPage = new CartPage(driver);
 
     @Test
     @Description("Search product by name and add to cart")
@@ -20,16 +22,28 @@ public class AddCartTest extends BaseTest {
         click(cartPage.addToCartBtn);
         click(cartPage.checkOutBtn);
     }
-   @Test
-   @Attachment
+
+    @Test
+    @Attachment
     public void emptyShoppingCart() {
         //cartPage.addProduct();
         click(cartPage.shoppingCartBtn);
         click(cartPage.navigateCartBtn);
-       WebElement emptyCartMessage = driver.findElement(By.className("noProducts_header__9wz2x"));
-       Assert.assertTrue(emptyCartMessage.isDisplayed());
-       String result = emptyCartMessage.getText();
-       System.out.println(result);
+        WebElement emptyCartMessage = driver.findElement(By.className("noProducts_header__9wz2x"));
+        Assert.assertTrue(emptyCartMessage.isDisplayed());
+        String result = emptyCartMessage.getText();
+        System.out.println(result);
+    }
+
+    @Test
+    @Description("Search product by name and add to cart")
+    public void addAndDelete() throws InterruptedException {
+        chooseAndAdd();
+        click(cartPage.navigateCartBtn);
+        click(cartPage.clearCartBtn);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement emptyCart = driver.findElement(By.className("checkout-shoppingbag"));
+        wait.until(ExpectedConditions.visibilityOf(emptyCart));
     }
 }
 

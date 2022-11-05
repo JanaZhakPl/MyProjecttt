@@ -34,13 +34,13 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void ifEmptyForm() throws InterruptedException {
+    public void ifEmptyForm(){
         registrationPage.submitBtn.click();
         Assert.assertTrue(registrationPage.requiredField.isDisplayed());
     }
 
     @Test
-    public void isInvalidValidEmail() throws InterruptedException {
+    public void isInvalidValidEmail() {
         registrationPage.email.sendKeys("useruser.com");
         registrationPage.password.sendKeys("");
         WebDriverWait wait = new WebDriverWait(driver, 10);

@@ -13,8 +13,6 @@ public class CartPage extends BaseTest {
     public By addToCartBtn = By.xpath("(//div[@class='pip-buy-module__buttons--left']//span[text()='Dodaj do koszyka'])");
     public By checkOutBtn = By.partialLinkText("Przejdź do koszyka");
     public By shoppingCartBtn = By.className("js-shopping-cart-icon");
-    public By clearCartBtn = By.className("product-controls__remove");
+    public By clearCartBtn = By.xpath("//*[@id=\"cart-ingka-context-menu-actions-2\"]/button/span/span");
     public By navigateCartBtn = By.className("cart-ingka-btn__icon");
-    //   public By emptyCartMessage = By.className("noProducts_header__9wz2x");
-
-}
+   }
