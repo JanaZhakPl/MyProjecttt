@@ -26,10 +26,9 @@ public class CreateNewProfileTest extends BaseTest {
                 .choosePreferedStore("g")
                 .fillEmail(generateRandomEmail())
                 .fillPassword("qQ123456");
-        Thread.sleep(1000);
         WebElement element = driver.findElement(By.xpath("//*[@id=\"family-signup-form-double-consent\"]"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        Thread.sleep(1000);
+        Thread.sleep(1000); // my test can`t be passed with WAIT method only with sleep(
         click(registrationPage.consent);
         click(registrationPage.confirmation);
         ExpectedConditions.presenceOfElementLocated(registrationPage.confirmationEmailMessage);
@@ -42,7 +41,7 @@ public class CreateNewProfileTest extends BaseTest {
                 .clickRegBtn();
         WebElement element = driver.findElement(By.xpath("//*[@id=\"singup-form-submit-button\"]/span/span"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        Thread.sleep(500);
+        Thread.sleep(500); // the test can`t be passed with WAIT method only with sleep(/
         click(registrationPage.confirmation);
         ExpectedConditions.presenceOfElementLocated(registrationPage.errorMessage);
     }

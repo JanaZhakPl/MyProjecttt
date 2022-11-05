@@ -3,18 +3,16 @@ package loginForm;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
-import org.junit.*;
-import org.openqa.selenium.By;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Thread.sleep;
 
 public class RegistrationFormTest {
     private WebDriver driver;
@@ -39,25 +37,20 @@ public class RegistrationFormTest {
     public void ifEmptyForm() throws InterruptedException {
         registrationPage.submitBtn.click();
         Assert.assertTrue(registrationPage.requiredField.isDisplayed());
-        sleep(1000);
     }
 
     @Test
     public void isInvalidValidEmail() throws InterruptedException {
         registrationPage.email.sendKeys("useruser.com");
         registrationPage.password.sendKeys("");
-        sleep(1000);
-        List<WebElement> allMessages = driver.findElements(By.xpath("//*[contains(text(), 'Please enter a valid email address.')]"));
-        if (allMessages.isEmpty()) {
-            System.out.println("Test not passed");
-        } else {
-            System.out.println("Test passed");
-            System.out.println(registrationPage.requiredField.getText());
-        }
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(registrationPage.requiredField));
+        System.out.println(registrationPage.requiredField.getText());
+
     }
 
     @Test
-    @Description ("Checking login form with all needed parameters")
+    @Description("Checking login form with all needed parameters")
     @Step("Fill the login form")
     public void isSuccessfullyLogin() throws InterruptedException {
         registrationPage.firstName.sendKeys("UserName");
@@ -68,9 +61,9 @@ public class RegistrationFormTest {
         registrationPage.email.sendKeys("user@user.com");
         registrationPage.password.sendKeys("1111");
         registrationPage.confirmPassword.sendKeys("1111");
-        sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(registrationPage.submitBtn));
         registrationPage.submitBtn.click();
     }
-
 }
 
